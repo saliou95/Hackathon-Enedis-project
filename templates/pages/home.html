@@ -37,12 +37,19 @@
     #number {
         size: 2px;
     }
+
+    canvas {
+        margin-top:100px;
+    }
     
 </style>
 
 {% extends 'layouts/default.html' %}
 
 {% block body %}
+
+
+
 <body>
 
     
@@ -74,13 +81,141 @@
         </p>
     </form>
 
-
-
-
-
     <div class="home">
         <h1 style="text-align: center;">Enedis Dashboard</h1>
     </div>
+
+
+
+
+    
+
+    <div>
+        <canvas id="firstChart"></canvas>
+        <canvas id="secondChart"></canvas>
+        <canvas id="thirdChart"></canvas>
+    </div>
+    <script>
+        console.log("ok");
+        const ct1 = document.getElementById('firstChart');
+        const ct2 = document.getElementById('secondChart');
+        const ct3 = document.getElementById('thirdChart');
+
+        new Chart(ct1, {
+            type: 'line',
+            data: {
+                labels: ["Janvier","Janvier","Janvier","Janvier","Janvier","Janvier","Janvier","Janvier","Janvier","Janvier","Janvier","Janvier","Janvier","Janvier","Janvier", "Février", "Février", "Février", "Février", "Février", "Février", "Février", "Février", "Février", "Février", "Février", "Février", "Février", "Mars","Mars","Mars","Mars","Mars","Mars","Mars","Mars","Mars","Mars","Mars","Mars","Mars","Mars","Mars","Mars", "Avril","Avril","Avril","Avril","Avril","Avril","Avril","Avril","Avril","Avril","Avril","Avril","Avril","Avril", "Mai","Mai","Mai","Mai","Mai","Mai","Mai","Mai","Mai","Mai","Mai","Mai","Mai","Mai","Mai","Mai", "Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin", "Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet", "Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout", "Septembre","Octobre", "Novembre","Décembre"],
+                datasets: [{
+                    label: 'Puissance sur l\'année',
+                    data: [33,34,59,40,84,42,38,43,37,57,38,75,57,50,44,47,62,45,51,57,78,40,29,28,60,76,33,34,59,40,84,42,38,43,37,57,38,75,57,50,44,47,62,45,51,57,78,40,29,28,60,33,34,59,40,84,42,38,43,37,57,38,75,57,50,44,47,62,45,51,57,78,40,29,28,60,33,34,59,40,84,42,38,43,37,57,38,75,57,50,44,47,62,45,51,57,78,40,29,28,60,33,34,59,40,84,42,38,43,37,57,38,75,57,50,44,47,62,45,51,57,78,40,29,28,60,33,34,59,40,84,42,38,43,37,57,38,75,57,50,44,47,62,45,51,57,78,40,29,28,60,33,34,59,40,84,42,38,43,37,57,38,75,57,50,44,47,62,45,51,57,78,40,29,28,60,33,34,59,40,84,42,38,43,37,57,38,75,57,50,44,47,62,45,51,57,78,40,29,28,60,33,34,59,40,84,42,38,43,37,57,38,75,57,50,44,47,62,45,51,57,78,40,29,28,60,33,34,59,40,84,42,38,43,37,57,38,75,57,50,44,47,62,45,51,57,78,40,29,28,60,33,34,59,40,84,42,38,43,37,57,38,75,57,50,44,47,62,45,51,57,78,40,29,28,60,33,34,59,40,84,42,38,43,37,57,38,75,57,50,44,47,62,45,51,57,78,40,29,28,60,33,34,59,40,84,42,38,43,37,57,38,75,57,50,44,47,62,45,51,57,78,40,29,28,60,33,34,59,40,84,42,38,43,37,57,38,75,57,50,44,47,62,45,51,57,78,40,29,28,60],
+                    borderWidth: 3,
+                    borderColor: "#005EB8",
+                    backgroundColor: "#005EB8"
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        ticks : {
+                            callback : function (val, index) {
+                                if (index == 0) 
+                                    return this.getLabelForValue(val);
+                                else if (index == 15) 
+                                    return this.getLabelForValue(val);
+                                else if (index == 28) 
+                                    return this.getLabelForValue(val);
+                                else if (index == 44) 
+                                    return this.getLabelForValue(val);
+                                else 
+                                    return this.getLabelForValue("");
+                            }
+                        }
+                    },
+                    y: {
+                    beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        new Chart(ct2, {
+            type: 'bar',
+            data: {
+                labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52],
+                datasets: [{
+                    label: 'Courbe de charge hebdomadaire',
+                    data: [33,34,59,40,84,42,38,43,37,57,38,75,57,50,44,47,62,45,51,57,78,40,29,28,60,76,33,34,59,40,84,42,38,43,37,57,38,75,57,50,44,47,62,45,51,57,78,40,29,28,60,33],
+                    borderWidth: 1,
+                    borderColor: "#005EB8",
+                    backgroundColor: "#005EB8"
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        ticks : {
+                            callback : function (val, index) {
+                                return index%2 == 0 ? this.getLabelForValue(val) : ""
+                            }
+                        }
+                    },
+                    y: {
+                    beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        new Chart(ct3, {
+            data: {
+                datasets: [{
+                    type:"line",
+                    label: 'Monotone de Puissance',
+                    data: [600,400,123,122,120,110,95,90,85,79,78,77,76],
+                    borderWidth: 5,
+                    borderColor: "#005EB8",
+                    backgroundColor: "#005EB8"
+                },
+                {
+                    type:"line",
+                    label: 'Puissance souscrite',
+                    data: [620,620,620,620, 620,620,620,620,620,620,620,620,620],
+                    borderWidth: 5,
+                    borderColor: "#ff4d2e",
+                    backgroundColor: "#ff4d2e"
+                },
+                {
+                    type:"line",
+                    label: 'Puissance souscrite revue',
+                    data: [520,520,520,520,520,520,520,520,520,520,520,520,520],
+                    borderWidth: 5,
+                    borderColor: "#93C90E",
+                    backgroundColor: "#93C90E"
+                }],
+                labels: [10,17,50,189,190,200,700,1600,1800,2200,2300,2400,2500]
+            },
+            options: {
+                scales: {
+                    y: {
+                    beginAtZero: true
+                    }
+                },
+                plugins : {
+                    tooltips: {
+                        callback : {
+                            label:(context, data)  => {
+                                console.log(data)
+                                // data.datasets[context.datasetIndex].data[context.index].text
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+    
+
 </body>
 
 {% endblock %}
