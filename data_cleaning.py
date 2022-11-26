@@ -3,7 +3,7 @@ import os
 
 for file_name in os.listdir("Hackathon_RESPONSE/CDC par client"):
     print(file_name)
-    file = open("Hackathon RESPONSE/CDC_par client/"+file_name,"r")
+    file = open("Hackathon_RESPONSE/CDC par client/"+file_name,"r")
 
     lines = file.readlines()
     dates = []
