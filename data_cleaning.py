@@ -21,6 +21,7 @@ for file_name in os.listdir("Hackathon_RESPONSE/CDC par client"):
 
         if (min % 10) == 5 :
             conss[-1] += cons
+            conss[-1] = conss[-1]/2
         else :
             dates.append(date)
             heures.append(heure)
