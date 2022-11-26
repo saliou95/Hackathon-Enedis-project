@@ -1,0 +1,68 @@
+<style>
+    footer{
+        width: 1000;
+        margin: auto;
+        margin-top: 50%;
+        display: flex;
+        justify-content: space-between;
+        background-color: #DDEDC9;
+        /* border: 1px solid black; */
+        
+    }
+    footer > div {
+        color: #fff;
+    }
+    
+    footer> div > ul {
+        list-style-type: none;
+    }
+
+    footer> div > ul >li> a> span {
+        padding-left: 10px;
+    }
+</style>
+
+<br>
+<footer>
+    <div>
+        <h1><a href="{{ url_for('home') }}"><img src="{{ user_image }}" alt="Mike" height="60px" width="60px"></a></h1>
+    </div>
+    <div class="nous-enedis">
+        <ul>
+            <li><a href="#" class="">NOUS CONNAITRE</a></li>
+            <li><a href="#"><span> > Qui somme-nous</span></a></li>
+            <li><a href="#"><span> > Enedis dans votre région</span></a></li>
+            <li><a href="#"><span> > Nos Engament</span></a></li>
+        </ul>
+    </div>
+    <hr>
+    <div class="espace-dedier">
+        <ul>
+            <li><a href="#" class="noir">ESPACE DEDIES</a></li>
+            <li><a href="#"><span> > Espace offres emploi</span></a></li>
+            <li><a href="#"><span> > Espace press</span></a></li>
+            <!-- <li><a href="#"><i class="fas fa-phone-square-alt" class="icon"></i></a> | <a href="mailto::diallo-saliou288@gmail.com"><i class="fas fa-envelope" class="icon"></i></a> | <a href="#"  class="icon">FAQ</a></li>				 -->
+        </ul>
+    </div>
+    <hr>
+    <div class="other">
+        <ul>
+            <li><a href="#" class="noir">SERVICE ECLAIRE</a></li>
+            <li><a href="#"><span> > Aide & Contact</span></a></li>
+            <li><a href="#"><span> > Coupure d'électricité</span></a></li>
+            <li><a href="#"><span> > Relevé de compte</span></a></li>
+            <li><a href="#"><span> > Condition génerale d'utilisation</span></a></li>
+        </ul>
+    </div>
+    <hr>
+    <div class="lang">
+        <!-- <i class="fas fa-globe"></i> -->
+        <select name="select" onchange="updated(this)">
+            <option value="1">Français</option>
+            <option value="2">Anglais</option>
+        </select>
+        <!-- <div>
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a> | <a href="https://www.twitter.com/" target="_blank"><i class="fab fa-twitter-square"></i></a> | <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a> | <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a> | <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div> -->
+    </div>
+</footer>

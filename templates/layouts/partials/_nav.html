@@ -1,0 +1,64 @@
+<style>
+    body{
+        width: 1000px;
+        margin: auto;
+        background-color: #DDEDC9;
+        /* border: 1px solid black; */
+        
+    }
+
+    .en-tete{
+        display: flex;
+        justify-content: space-between;
+        padding: -10px;
+        /* border: 1px solid black; */
+        /* background-color: #000; */
+        color: #fff;
+        
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    .en-tete>h1>a>span {
+        position: relative;
+        top: -20px;
+    }
+
+    h1 {
+        /* border: 1px solid black; */
+        margin: 0px;
+        font-size: 16px;
+    }
+
+    nav>ul {
+        display: flex;
+        justify-content: space-around;
+        list-style-type: none;
+        /* border: 1px solid black; */
+        margin-right: 60px;
+        margin-top: 20px;
+        font-size: 14px;
+    }
+
+    nav>ul>li {
+        margin-right: 25px;
+    }
+</style>
+
+<body>
+    
+    <br/>
+    <div class="en-tete">  
+        <h1><a href="{{ url_for('home') }}"><img src="{{ user_image }}" alt="Mike" height="60px" width="60px"></a></h1>
+        <!-- <h1><a href="{{ url_for('home') }}"></a> <span>Enedis</span></a></h1> -->
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('about') }}" class="link"> A propos </a></li>
+                <li><a href="{{ url_for('contact') }}" class="link"> Contact </a></li>
+            </ul>
+            
+            
+        </nav>
+    </div>
+</body>

@@ -1,0 +1,80 @@
+<style>
+   /* body{
+
+   } */
+    .home > h1{
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 20px;
+    }
+    /* form {
+        position: relative;
+        top: 10px;
+        right: -70%;
+    } */
+    .home{
+        margin-top: 5px;
+    }
+    #id-forms {
+        display: flex;
+        justify-content: space-around;
+        
+    }
+
+    #id-forms > div {
+        display: flex;
+        margin-left: 20px;
+    }
+
+    #id-forms > p > p { 
+        width: 20%;
+    }
+
+    #id-forms > div > p {
+        margin-right: 5px;
+        
+    }
+</style>
+
+{% extends 'layouts/default.html' %}
+
+{% block body %}
+<body>
+
+    
+    <div class="home">
+        <h1 style="text-align: center;">Enter your parameter and choose your dataset</h1>
+    </div>
+    
+    <form action="" method="" id="id-forms">
+        <div>
+            <p>
+                <input type="text" placeholder="HCE" />
+            </p>
+            <p>
+                <input type="file" id="myfile" name="myfile" />
+            </p>
+            <p>
+                <input type="submit" value="soumettre">
+            </p>
+        </div>
+        
+        <p>
+            <h4>Hyper paramètres</h4>
+            <p>
+                <input type="checkbox" name="param" id="choix"> <label for="choix">param1</label> <br>
+                <input type="checkbox" name="param" id="choix"> <label for="choix">param2</label><br>
+                <input type="checkbox" name="param" id="choix"> <label for="choix">param3</label><br>
+            </p>
+        </p>
+    </form>
+
+
+
+
+
+    <div class="home">
+        <h1 style="text-align: center;">Enedis Dashboard</h1>
+    </div>
+</body>
+
+{% endblock %}
