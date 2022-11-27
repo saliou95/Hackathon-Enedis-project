@@ -29,11 +29,9 @@ for file_name in os.listdir("Hackathon_RESPONSE/CDC par client"):
 
     data = pd.DataFrame(data = {"date":dates,"heure":heures,"consomation":conss})
     data["date"] = pd.to_datetime(data["date"])
-    #data["heure"] = pd.to_datetime(data["heure"],format='%H:%M')
+    # data["heure"] = pd.to_datetime(data["heure"],format='%H:%M')
     data["consomation"] = data["consomation"].astype("float")
     #format='%H:%M
 
     data.to_csv("Hackathon_RESPONSE/clean_data/"+file_name,index=False)
-
-
 
