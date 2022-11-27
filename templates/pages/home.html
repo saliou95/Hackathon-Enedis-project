@@ -166,6 +166,7 @@
             }
         });
 
+        let labels_3 = [10,17,50,189,190,200,700,1600,1800,2200,2300,2400,2500];
         new Chart(ct3, {
             data: {
                 datasets: [{
@@ -192,7 +193,7 @@
                     borderColor: "#93C90E",
                     backgroundColor: "#93C90E"
                 }],
-                labels: [10,17,50,189,190,200,700,1600,1800,2200,2300,2400,2500]
+                labels: labels_3
             },
             options: {
                 scales: {
@@ -201,11 +202,20 @@
                     }
                 },
                 plugins : {
-                    tooltips: {
-                        callback : {
-                            label:(context, data)  => {
-                                console.log(data)
-                                // data.datasets[context.datasetIndex].data[context.index].text
+                    tooltip: {
+                        callbacks : {
+                            label:function(context) {
+                                // calcul de la somme totale des heures
+                                var s = 0;
+                                for (let i = 0; i < labels_3.length; i++) {
+                                    s += labels_3[i];
+                                }
+                                // calcul des heures en amont
+                                var l = 0;
+                                for (let i=0;i<=context.dataIndex; i++) 
+                                    l += labels_3[i];
+                                
+                                return [context.dataset.data[context.dataIndex], ((l/s)*100).toFixed(2) + "%"];
                             }
                         }
                     }
