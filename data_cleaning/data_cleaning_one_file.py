@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-input_file = "Hackathon_RESPONSE/CDC par client/ACDC_CC_STM A 25_11_2022.csv"
+input_file = "C:/Users/Saliou95/Desktop/Hackathon RESPONSE/Data/CDC par client/ACDC_CC_STM A 25_11_2022.csv"
 
 file = open(input_file,"r")
 
@@ -73,5 +73,16 @@ data["date"] = pd.to_datetime(data["date"])
 #data["heure"] = pd.to_datetime(data["heure"],format='%H:%M')
 data["consomation"] = data["consomation"].astype("float")
 #format='%H:%M
+conso_list = list(data["consomation"])
+heures_list = list(data["heure"])
+dates_list = list(data["date"])
 
-data.to_csv("clean_file.csv",index=False)
+list(data)
+
+fileJson = data.to_json("clean_file.json") 
+
+print(type(conso_list))
+
+
+for i in data :
+    print(type(i))
