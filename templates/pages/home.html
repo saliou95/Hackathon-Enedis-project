@@ -39,7 +39,7 @@
     }
 
     canvas {
-        margin-top:100px;
+        margin-bottom:100px;
     }
     
 </style>
@@ -91,15 +91,25 @@
     
 
     <div>
-        <canvas id="firstChart"></canvas>
-        <canvas id="secondChart"></canvas>
-        <canvas id="thirdChart"></canvas>
+        <h2>Puissance sur l'année</h2>
+        <canvas id="annual_chart"></canvas>
+        <h2>Puissance hebdomadaire</h2>
+        <canvas id="hebdo_chart"></canvas>
+        <h2>Monotone de puissance</h2>
+        <canvas id="mono_puissance"></canvas>
+        <h2>Puissance sur la semaine selon saison</h2>
+        <canvas id="hebdo_season_chart"></canvas>
+        <h2>Puissance sur la journée selon saison</h2>
+        <canvas id="day_season_chart"></canvas>
+
     </div>
     <script>
         console.log("ok");
-        const ct1 = document.getElementById('firstChart');
-        const ct2 = document.getElementById('secondChart');
-        const ct3 = document.getElementById('thirdChart');
+        const ct1 = document.getElementById('annual_chart');
+        const ct2 = document.getElementById('hebdo_chart');
+        const ct3 = document.getElementById('mono_puissance');
+        const ct4 = document.getElementById('hebdo_season_chart');
+        const ct5 = document.getElementById('day_season_chart');
 
         new Chart(ct1, {
             type: 'line',
@@ -222,6 +232,50 @@
                 }
             }
         });
+
+        new Chart(ct4, {
+            data : {
+                datasets: [{
+                    type:'line',
+                    label:"Ete",
+                    data: [600,400,123,122,120,110,95,90,85,79,78,77,76],
+                    borderWidth:5,
+                    borderColor: "#eb4034",
+                    backgroundColor: "#eb4034"
+                },
+                {
+                    type:'line',
+                    label:"Hiver",
+                    data: [700,500,140,132,130,120,120,100,110,90,80,82,75],
+                    borderWidth:5,
+                    borderColor: "#348ceb",
+                    backgroundColor: "#348ceb"
+                }],
+                labels:["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"]
+            }
+        })
+
+        new Chart(ct5, {
+            data : {
+                datasets: [{
+                    type:'line',
+                    label:"Ete",
+                    data: [600,400,123,122,120,110,95,90,85,79,78,77,76,80,90,120,180,170,160,180,120,110,80],
+                    borderWidth:5,
+                    borderColor: "#eb4034",
+                    backgroundColor: "#eb4034"
+                },
+                {
+                    type:'line',
+                    label:"Hiver",
+                    data: [700,500,140,132,130,120,120,100,110,90,80,82,75,90,130,140,160,200,210,220,215,150,100],
+                    borderWidth:5,
+                    borderColor: "#348ceb",
+                    backgroundColor: "#348ceb"
+                }],
+                labels:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
+            }
+        })
 
     </script>
     
