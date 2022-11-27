@@ -41,6 +41,73 @@
     canvas {
         margin-bottom:100px;
     }
+
+    .cardBox
+{
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-gap: 20px;
+}
+
+.cardBox.two
+{
+  grid-template-columns: repeat(2,1fr);
+}
+
+.cardBox .card
+{
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointor;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.75s;
+  width:50%;
+  align-self: center;
+  justify-self: center;
+}
+
+.cardBox .card:hover
+{
+  background-color: #005EB8;
+}
+
+.cardBox .card .numbers
+{
+  position: relative;
+  font-size: 2.2em;
+  font-weight: 1000;
+  color: #005EB8;
+}
+
+.cardBox .card:hover .numbers
+{
+  color: #fff;
+}
+
+.cardBox .card .cardName
+{
+  color: #999
+}
+.cardBox .card:hover .cardName
+{
+  color: #fff;
+}
+
+.cardBox .card .iconBox
+{
+  font-size: 2.5em;
+}
+
+.cardBox .card .iconBox img 
+{
+    width: 2.5em;
+}
     
 </style>
 
@@ -97,6 +164,33 @@
         <canvas id="hebdo_chart"></canvas>
         <h2>Monotone de puissance</h2>
         <canvas id="mono_puissance"></canvas>
+
+
+        <div class="cardBox two">
+
+            <div class="card">
+                <div>
+                    <div class="numbers" id="ancienne_p">620</div>
+                    <div class="cardName">Ancienne puissance souscrite</div>
+                </div>
+                <div class="iconBox">
+                    <img src="../../static/images/puissance_icon.png">
+                </div>
+            </div>
+    
+            <div class="card">
+                <div>
+                    <div class="numbers" id="nouvelle_p">520</div>
+                    <div class="cardName">Nouvelle puissance souscrite</div>
+                </div>
+                <div class="iconBox">
+                    <img src="../../static/images/puissance_icon.png">
+                </div>
+            </div>
+    
+        </div>
+
+
         <h2>Puissance sur la semaine selon saison</h2>
         <canvas id="hebdo_season_chart"></canvas>
         <h2>Puissance sur la journée selon saison</h2>
