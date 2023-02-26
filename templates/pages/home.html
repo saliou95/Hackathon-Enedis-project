@@ -168,222 +168,284 @@
         {{ dates }}
     </div> -->
 
-    
+
 
     <div>
+
         <h2>Puissance sur l'année</h2>
-        <canvas id="annual_chart"></canvas>
+
+
+        <select class="ann_con" name="ann_con" id="ann_con">
+          <option value="2019">2019</option>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+        </select>
+
+
+
+        <canvas id="annual_chart" onchange="selectYearChanged(this);"></canvas>
         <h2>Puissance hebdomadaire</h2>
+
+
+
+        <label for="start">Date:</label>
+
+        <input type="date" class="dateh" id="start" name="trip-start"
+               value="2019-04-02"
+               max="2022-12-31" min="2019-04-02">
         <canvas id="hebdo_chart"></canvas>
-        <h2>Monotone de puissance</h2>
-        <canvas id="mono_puissance"></canvas>
+
+
+
+        <h2>Puissance mensuelle</h2>
+
+        <label for="start">Date:</label>
+
+
+
+        <input type="month" class="datem" name="trip-start"
+               value="2019-04"
+               max="2022-12" min="2019-04">
+        <canvas id="mons_chart"></canvas>
+
+
+
+
+        <h2>Prévision</h2>
+
 
 
         <div class="cardBox two">
 
             <div class="card">
                 <div>
-                    <div class="numbers" id="ancienne_p">620</div>
-                    <div class="cardName">Ancienne puissance souscrite</div>
+                    <div class="cardName">Prévision pour le 1 Janvier 2023</div>
+                    <div class="numbers" id="ancienne_p">{{jr1_prv}}</div>
+
                 </div>
                 <div class="iconBox">
                     <img src="../../static/images/puissance_icon.png">
                 </div>
             </div>
-    
+
             <div class="card">
                 <div>
-                    <div class="numbers" id="nouvelle_p">520</div>
-                    <div class="cardName">Nouvelle puissance souscrite</div>
+                    <div class="cardName">Prévision pour le 2 Janvier 2023</div>
+                    <div class="numbers" id="nouvelle_p">{{jr2_prv}}</div>
+
                 </div>
                 <div class="iconBox">
                     <img src="../../static/images/puissance_icon.png">
                 </div>
             </div>
-    
+
         </div>
 
+        <h2>Consommation par tremestre</h2>
 
-        <h2>Puissance sur la semaine selon saison</h2>
-        <canvas id="hebdo_season_chart"></canvas>
-        <h2>Puissance sur la journée selon saison</h2>
-        <canvas id="day_season_chart"></canvas>
+
+        <select class="ann_tr" name="ann_tr" id="ann_tr">
+          <option value="2019">2019</option>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+        </select>
+
+        <center>
+        <div style="height: 700px">
+        <canvas id="tremestre"></canvas>
+
+        </div>
+        </center>
 
     </div>
-    <script>
+    <script type="module">
         console.log("ok");
         const ct1 = document.getElementById('annual_chart');
         const ct2 = document.getElementById('hebdo_chart');
-        const ct3 = document.getElementById('mono_puissance');
-        const ct4 = document.getElementById('hebdo_season_chart');
-        const ct5 = document.getElementById('day_season_chart');
+        const ct3 = document.getElementById('mons_chart');
+        const ct4 = document.getElementById('tremestre');
 
-        new Chart(ct1, {
+
+
+
+
+        var ch1 = new Chart(ct1, {
             type: 'line',
             data: {
-                labels: ["Janvier","Janvier","Janvier","Janvier","Janvier","Janvier","Janvier","Janvier","Janvier","Janvier","Janvier","Janvier","Janvier","Janvier","Janvier", "Février", "Février", "Février", "Février", "Février", "Février", "Février", "Février", "Février", "Février", "Février", "Février", "Février", "Mars","Mars","Mars","Mars","Mars","Mars","Mars","Mars","Mars","Mars","Mars","Mars","Mars","Mars","Mars","Mars", "Avril","Avril","Avril","Avril","Avril","Avril","Avril","Avril","Avril","Avril","Avril","Avril","Avril","Avril", "Mai","Mai","Mai","Mai","Mai","Mai","Mai","Mai","Mai","Mai","Mai","Mai","Mai","Mai","Mai","Mai", "Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin","Juin", "Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet","Juillet", "Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout","Aout", "Septembre","Octobre", "Novembre","Décembre"],
-                datasets: [{
+                               datasets: [{
                     label: 'Puissance sur l\'année',
-                    data: {{conso}},
+                    data: [],
                     borderWidth: 3,
                     borderColor: "#005EB8",
                     backgroundColor: "#005EB8"
-                }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        ticks : {
-                            callback : function (val, index) {
-                                if (index == 0) 
-                                    return this.getLabelForValue(val);
-                                else if (index == 15) 
-                                    return this.getLabelForValue(val);
-                                else if (index == 28) 
-                                    return this.getLabelForValue(val);
-                                else if (index == 44) 
-                                    return this.getLabelForValue(val);
-                                else 
-                                    return this.getLabelForValue("");
-                            }
-                        }
-                    },
-                    y: {
-                    beginAtZero: true
-                    }
-                }
+                }],
+                 labels: ["Janvier","Fevrier","Mars","Avril","Mai", "Juin,","July","August","Septembre","Octobre", "Novembre","Décembre"],
+
+
             }
         });
 
-        new Chart(ct2, {
+        fetch("http://localhost:5000/cons_y/2019")
+        .then(response => response.json())
+        .then(json => {console.log(json['data']);
+             ch1.data.datasets[0].data = json['data'];
+             ch1.data.labels = ["Janvier","Fevrier","Mars","Avril","Mai", "Juin,","July","August","Septembre","Octobre", "Novembre","Décembre"];
+             ch1.update();   } );
+
+
+        var ch2 = new Chart(ct2, {
             type: 'bar',
             data: {
-                labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52],
+                labels: [],
                 datasets: [{
                     label: 'Courbe de charge hebdomadaire',
-                    data: [33,34,59,40,84,42,38,43,37,57,38,75,57,50,44,47,62,45,51,57,78,40,29,28,60,76,33,34,59,40,84,42,38,43,37,57,38,75,57,50,44,47,62,45,51,57,78,40,29,28,60,33],
+                    data: [],
                     borderWidth: 1,
                     borderColor: "#005EB8",
                     backgroundColor: "#005EB8"
                 }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        ticks : {
-                            callback : function (val, index) {
-                                return index%2 == 0 ? this.getLabelForValue(val) : ""
-                            }
-                        }
-                    },
-                    y: {
-                    beginAtZero: true
-                    }
-                }
             }
+
+
         });
 
-        let labels_3 = [10,17,50,189,190,200,700,1600,1800,2200,2300,2400,2500];
-        new Chart(ct3, {
+        fetch("http://localhost:5000/cons_day/2019-04-02")
+        .then(response => response.json())
+        .then(json => {console.log(json['consomation']);
+             ch2.data.datasets[0].data = json['consomation'];
+             ch2.data.labels = json['heure'];
+             console.log(ch2.data.labels);
+             ch2.update();   } );
+
+
+         var ch3 = new Chart(ct3, {
+            type: 'bar',
             data: {
+                labels: [],
                 datasets: [{
-                    type:"line",
-                    label: 'Monotone de Puissance',
-                    data: [600,400,123,122,120,110,95,90,85,79,78,77,76],
-                    borderWidth: 5,
+                    label: 'Courbe de charge mensuelle',
+                    data: [],
+                    borderWidth: 1,
                     borderColor: "#005EB8",
                     backgroundColor: "#005EB8"
-                },
-                {
-                    type:"line",
-                    label: 'Puissance souscrite',
-                    data: [620,620,620,620, 620,620,620,620,620,620,620,620,620],
-                    borderWidth: 5,
-                    borderColor: "#ff4d2e",
-                    backgroundColor: "#ff4d2e"
-                },
-                {
-                    type:"line",
-                    label: 'Puissance souscrite revue',
-                    data: [520,520,520,520,520,520,520,520,520,520,520,520,520],
-                    borderWidth: 5,
-                    borderColor: "#93C90E",
-                    backgroundColor: "#93C90E"
-                }],
-                labels: labels_3
-            },
-            options: {
-                scales: {
-                    y: {
-                    beginAtZero: true
-                    }
-                },
-                plugins : {
-                    tooltip: {
-                        callbacks : {
-                            label:function(context) {
-                                // calcul de la somme totale des heures
-                                var s = 0;
-                                for (let i = 0; i < labels_3.length; i++) {
-                                    s += labels_3[i];
-                                }
-                                // calcul des heures en amont
-                                var l = 0;
-                                for (let i=0;i<=context.dataIndex; i++) 
-                                    l += labels_3[i];
-                                
-                                return [context.dataset.data[context.dataIndex], ((l/s)*100).toFixed(2) + "%"];
-                            }
-                        }
-                    }
-                }
+                }]
             }
+
         });
 
-        new Chart(ct4, {
-            data : {
-                datasets: [{
-                    type:'line',
-                    label:"Ete",
-                    data: [600,400,123,122,120,110,95,90,85,79,78,77,76],
-                    borderWidth:5,
-                    borderColor: "#eb4034",
-                    backgroundColor: "#eb4034"
-                },
-                {
-                    type:'line',
-                    label:"Hiver",
-                    data: [700,500,140,132,130,120,120,100,110,90,80,82,75],
-                    borderWidth:5,
-                    borderColor: "#348ceb",
-                    backgroundColor: "#348ceb"
-                }],
-                labels:["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"]
-            }
-        })
+        fetch("http://localhost:5000/cons_y_m/2019-04")
+        .then(response => response.json())
+        .then(json => {ch3.data.datasets[0].data = json['data'];
+                ch3.data.labels = json['label'];
+                console.log("fuck i am here");
+                ch3.update();;   } );
 
-        new Chart(ct5, {
-            data : {
-                datasets: [{
-                    type:'line',
-                    label:"Ete",
-                    data: [600,400,123,122,120,110,95,90,85,79,78,77,76,80,90,120,180,170,160,180,120,110,80],
-                    borderWidth:5,
-                    borderColor: "#eb4034",
-                    backgroundColor: "#eb4034"
-                },
-                {
-                    type:'line',
-                    label:"Hiver",
-                    data: [700,500,140,132,130,120,120,100,110,90,80,82,75,90,130,140,160,200,210,220,215,150,100],
-                    borderWidth:5,
-                    borderColor: "#348ceb",
-                    backgroundColor: "#348ceb"
-                }],
-                labels:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
-            }
-        })
 
+
+
+
+
+         var ch4 = new Chart(ct4, {
+            type: 'doughnut',
+
+            data: {
+                     labels: [
+                            'Printemps',
+                            'Ete',
+                            'Automne',
+                            'Hiver'
+                          ],
+                    datasets: [{
+                      label: 'Consommation par tremsetre',
+                      data: [],
+                      backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)',
+                        'rgb(240, 105, 106)'
+                      ]
+
+                  }]
+                  },
+                  options: {
+                       heig : 2000,
+
+                       radius:'90%',
+                      }
+        });
+
+        fetch("http://localhost:5000/cons_sem/2019")
+        .then(response => response.json())
+        .then(json => {console.log(json['data']);
+             ch4.data.datasets[0].data = json['data'];
+
+             ch4.update();   } );
+
+
+
+
+        const ann_con = document.querySelector('.ann_con');
+
+        ann_con.addEventListener('change', (event) => {
+            fetch("http://localhost:5000/cons_y/"+ann_con.value)
+        .then(response => response.json())
+        .then(json => {console.log(json['data']);
+             ch1.data.datasets[0].data = json['data'];
+
+             ch1.update();   } );
+
+
+        });
+
+        const dateh = document.querySelector('.dateh');
+
+        dateh.addEventListener('change', (event) => {
+            console.log(dateh.value);
+            fetch("http://localhost:5000/cons_day/"+dateh.value)
+        .then(response => response.json())
+        .then(json => {console.log(json['consomation']);
+             ch2.data.datasets[0].data = json['consomation'];
+             ch2.data.labels = json['heure'];
+             console.log(ch2.data.labels);
+             ch2.update();   } );
+
+
+
+          });
+
+
+        const datem = document.querySelector('.datem');
+
+        datem.addEventListener('change', (event) => {
+            console.log(datem.value);
+            fetch("http://localhost:5000/cons_y_m/"+datem.value)
+        .then(response => response.json())
+        .then(json => {
+                console.log("fuck i am here");
+
+                ch3.data.datasets[0].data = json['data'];
+                ch3.data.labels = json['label'];
+
+                ch3.update();  } );
+
+
+          });
+
+
+        const ann_tr = document.querySelector('.ann_tr');
+
+        ann_tr.addEventListener('change', (event) => {
+            fetch("http://localhost:5000/cons_sem/"+ann_tr.value)
+        .then(response => response.json())
+        .then(json => {
+             ch4.data.datasets[0].data = json['data'];
+
+             ch4.update();   } );
+
+
+        });
     </script>
     
 
