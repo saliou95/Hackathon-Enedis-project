@@ -7,9 +7,9 @@ class Connection():
 
 
     def __init__(self):
-        login = 'Jean-claude'
+        login = ''
 
-        password = 'azertyuiop'  # J'avais changé le mot de passe pendant mes test, c'est le nouveau mot de passe.
+        password = ''  # J'avais changé le mot de passe pendant mes test, c'est le nouveau mot de passe.
         host = 'cluster0.kwhckqe.mongodb.net'
         db = 'UserData'
         uri = f'mongodb+srv://{login}:{password}@{host}/{db}?retryWrites=true&w=majority'
